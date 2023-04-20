@@ -21,7 +21,7 @@ class MailMessage(models.Model):
             if not vals.get("mail_server_id"):
                 vals["mail_server_id"] = (
                     self.sudo()
-                    .env["ir.mail_server"]
+                    .env["fetchmail.server"]
                     .search(
                         [("company_id", "=", vals.get("company_id", False))],
                         order="sequence",

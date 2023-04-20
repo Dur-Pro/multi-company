@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-    <record model="ir.ui.view" id="view_ir_mail_server_list_add_company">
-        <field name="model">ir.mail_server</field>
-        <field name="inherit_id" ref="base.ir_mail_server_list" />
+    <record model="ir.ui.view" id="view_fetchmail_server_tree_add_company">
+        <field name="model">fetchmail.server</field>
+        <field name="inherit_id" ref="fetchmail.view_email_server_tree" />
         <field name="arch" type="xml">
-            <field name="sequence" position="after">
+            <field name="name" position="before">
+                <field name='sequence' widget='handle'/>
                 <field
                     name="company_id"
                     groups="base.group_multi_company"
@@ -13,9 +14,9 @@
             </field>
         </field>
     </record>
-    <record model="ir.ui.view" id="view_ir_mail_server_form_add_company">
-        <field name="model">ir.mail_server</field>
-        <field name="inherit_id" ref="base.ir_mail_server_form" />
+    <record model="ir.ui.view" id="view_fetchmail_server_form_add_company">
+        <field name="model">fetchmail.server</field>
+        <field name="inherit_id" ref="fetchmail.view_email_server_form" />
         <field name="arch" type="xml">
             <field name='name' position="after">
                 <field name="company_id" groups="base.group_multi_company" />
