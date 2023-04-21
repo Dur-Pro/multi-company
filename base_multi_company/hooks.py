@@ -39,25 +39,24 @@ def post_init_hook(cr, rule_ref, model_name):
         model_name (string): Name of Odoo model object to search for
             existing records.
     """
-    with api.Environment.manage():
-        env = api.Environment(cr, SUPERUSER_ID, {})
-        set_security_rule(env, rule_ref)
-        # Copy company values
-        model = env[model_name]
-        table_name = model._fields["company_ids"].relation
-        column1 = model._fields["company_ids"].column1
-        column2 = model._fields["company_ids"].column2
-        SQL = """
-            INSERT INTO {}
-            ({}, {})
-            SELECT id, company_id FROM {} WHERE company_id IS NOT NULL
-        """.format(
-            table_name,
-            column1,
-            column2,
-            model._table,
-        )
-        env.cr.execute(SQL)
+    env = api.Environment(cr, SUPERUSER_ID, {})
+    set_security_rule(env, rule_ref)
+    # Copy company values
+    model = env[model_name]
+    table_name = model._fields["company_ids"].relation
+    column1 = model._fields["company_ids"].column1
+    column2 = model._fields["company_ids"].column2
+    SQL = """
+        INSERT INTO {}
+        ({}, {})
+        SELECT id, company_id FROM {} WHERE company_id IS NOT NULL
+    """.format(
+        table_name,
+        column1,
+        column2,
+        model._table,
+    )
+    env.cr.execute(SQL)
 
 
 def uninstall_hook(cr, rule_ref):
