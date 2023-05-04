@@ -10,7 +10,8 @@
     "data": [
         "security/mail_security.xml",
         "views/ir_mail_server_view.xml",
-        "views/fetchmail_server_view.xml"
+        "views/fetchmail_server_view.xml",
+        "views/res_company_view.xml"
     ],
     "installable": True,
 }
