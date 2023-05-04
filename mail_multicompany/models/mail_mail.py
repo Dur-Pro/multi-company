@@ -71,7 +71,6 @@ class MailMail(models.Model):
 
                 if mail.company_id.email_reply_to:
                     headers['Return-Path'] = mail.company_id.email_reply_to
-                    catchall_setting = '%s@%s' % (bounce_alias, catchall_domain)
                     mail.reply_to = mail.company_id.email_reply_to
                 elif bounce_alias and catchall_domain:
                     headers['Return-Path'] = '%s@%s' % (bounce_alias, catchall_domain)
